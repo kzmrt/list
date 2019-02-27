@@ -17,7 +17,7 @@ Quick start
 ===========
 1. clone project::
 
-    git clone https://github.com/kzmrt/list
+    git clone https://github.com/kzmrt/list.git
 
 2. migrate model::
 
