@@ -1,0 +1,328 @@
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 200;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+    padding-top: 0px;
+}
+@media all and (-ms-high-contrast: none)  {
+  html, body {
+    font-family: Verdana, Meiryo, sans-serif;
+  }
+}
+@media all and (-ms-high-contrast: active) {
+  html, body {
+    font-family: Verdana, Meiryo, sans-serif;
+  }
+}
+
+div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6 label, input, textarea, select, button {
+    margin: 0;
+    padding: 0;
+    color: #555555;
+    line-height: 1.8;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 40px 0 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+
+h2, h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+a {
+    color: #6495ed;
+    text-decoration: none;
+}
+
+a.act {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+li {
+    list-style: none;
+}
+
+section {
+    margin: 0 0 8px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.error-msg, .errorlist * {
+    color: #ff0000;
+}
+
+.info-msg, .infolist * {
+    color: #0000ff;
+}
+
+header {
+    width: 100%;
+    display: table;
+    margin: 0 0 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+header a {
+    color: #888888;
+}
+
+header .site-name {
+    padding-left: 8px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header nav {
+    padding-right: 8px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+header nav li {
+    text-align: right;
+    display: inline-block;
+    padding-right: 24px;
+}
+
+header nav li:last-child {
+    padding-right: 0;
+}
+
+header .site-name a {
+    font-size: 1.4rem;
+}
+
+.content {
+    padding: 0 8px;
+}
+
+/**
+ * index
+ */
+.user-name {
+    margin-bottom: 24px;
+    color: #993333;
+}
+
+.post-list ul {
+    width: 100%;
+}
+
+.post-list ul li {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.post-list, .pagination {
+
+}
+
+.pagination ul {
+    width: 100%;
+    display: table;
+}
+
+.pagination li {
+    display: table-cell;
+    width: 50%;
+}
+
+.pagination li:last-child {
+    text-align: right;
+}
+
+/**
+ * detail
+ */
+.post-text {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.post-date {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.post-date span {
+    padding: 0 16px;
+}
+
+.post-edit {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.post-edit a:first-child {
+    margin-right: 24px;
+}
+
+/**
+ * Create, Update
+ */
+.common-form label {
+    display: block;
+}
+
+.common-form p {
+    margin-bottom: 8px;
+}
+
+.common-form input, .common-form textarea {
+    padding: 4px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.common-form select {
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+.common-form .submit {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 8px 36px;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #4CAF50;
+    border-radius: 10px;
+}
+
+.common-form .delete {
+    background-color: #f44336;
+}
+
+/* カレンダーの土日に色を付ける */
+.datepicker-days th.dow:first-child,
+.datepicker-days td:first-child {
+    color: #f00;
+}
+.datepicker-days th.dow:last-child,
+.datepicker-days td:last-child {
+    color: #00f;
+}
+
+/* テキストフィールド */
+input.sample1{
+    width:100px;
+    height:30px;
+}
+
+.bold {
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.tiny {
+    font-size: 80%;
+    color: #999;
+}
+.table>thead>tr>th {
+    border-style: none;
+}
+
+main
+{
+    padding-top: 0px;
+    padding-bottom: 10px;
+    height: auto;
+}
+
+/* 画像の自動調整 */
+img {
+    max-width: 100%;
+    height:auto;
+}
+
+/* footer */
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* ページトップ */
+#page-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 80%;
+}
+#page-top a {
+    background: #666;
+    text-decoration: none;
+    color: #fff;
+    width: 100px;
+    padding: 20px 0;
+    text-align: center;
+    display: block;
+    border-radius: 10px;
+}
+#page-top a:hover {
+    text-decoration: none;
+    background: #999;
+}

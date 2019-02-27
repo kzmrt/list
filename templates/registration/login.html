@@ -1,0 +1,34 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3">
+    <h1>ログイン</h1>
+    <section class="common-form">
+        {% if form.errors %}
+        <p class="error-msg">ユーザー名とパスワードが一致しません。再試行してください。</p>
+        {% endif %}
+
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p class="info-msg">Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+            {% if not form.errors %}
+        <p class="info-msg">ログインしてください。</p>
+            {% endif %}
+        {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit">ログイン</button>
+                <input type="hidden" name="next" value="{{ next }}"/>
+        </form>
+    </section>
+</div>
+{% endblock %}

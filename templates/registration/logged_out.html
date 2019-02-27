@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <h1>ログアウトしました。</h1>
+        <p>ご利用ありがとうございました。</p>
+    </div>
+    <hr>
+    <section>
+        <div class="col-md-6 offset-md-3">
+            <button type="submit" class="btn btn-primary col-md-4" onClick="location.href='{% url 'search:index' %}'">再度ログイン</button>
+        </div>
+    </section>
+{% endblock %}
