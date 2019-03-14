@@ -23,23 +23,87 @@
         {% if object_list|length == 0 %}
             <p>検索結果が存在しません。</p>
         {% else %}
+            <div id="checkbox-container">
             <table class="table table-hover table-bordered">
                 <tr>
+                    <th><input type="checkbox" id="checkall" /></th>
                     <th>タイトル</th>
                     <th>内容</th>
                 </tr>
                 <tbody>
                 {% for post in object_list %}
                     <tr>
-                        <td width="35%">{{ post.title }}</td>
-                        <td width="65%">{{ post.text }}</td>
+                        <td width="3%"><input type="checkbox" value="{{ post.pk }}" name="checks[]" id="{{ post.pk }}" class="checkbox"></td>
+                        <td width="34%">{{ post.title }}</td>
+                        <td width="63%">{{ post.text }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            </div>
         {% endif %}
 
     </section>
+
+    <script>
+        $('#button').click(function() { // 検索ボタンが押された時の処理
+            localStorage.removeItem("formValues"); // ローカルストレージから削除
+        });
+
+        // チェックボックス関連処理
+        var formValues = JSON.parse(localStorage.getItem('formValues')) || {};
+        var $checkboxes = $("#checkbox-container :checkbox");
+
+        function allChecked(){
+          return $checkboxes.length === $checkboxes.filter(":checked").length;
+        }
+
+        function updateStorage(){
+          $checkboxes.each(function(){
+            formValues[this.id] = this.checked;
+          });
+
+          localStorage.setItem("formValues", JSON.stringify(formValues));
+        }
+
+        $checkboxes.on("change", function(){
+          updateStorage();
+        });
+
+        // On page load
+        $.each(formValues, function(key, value) {
+          $("#" + key).prop('checked', value);
+        });
+
+        // CheckAll
+        $(document).ready(function(){
+            // Check or Uncheck All checkboxes
+            $("#checkall").change(function(){
+                var checked = $(this).is(':checked');
+                if(checked){
+                    $(".checkbox").each(function(){
+                      $(this).prop("checked",true);
+                    });
+                }else{
+                    $(".checkbox").each(function(){
+                      $(this).prop("checked",false);
+                    });
+                }
+                updateStorage();
+            });
+
+            // Changing state of CheckAll checkbox
+            $(".checkbox").click(function(){
+
+                if($(".checkbox").length == $(".checkbox:checked").length) {
+                    $("#checkall").prop("checked", true);
+                } else {
+                    $("#checkall").removeAttr("checked");
+                }
+            });
+        });
+    </script>
+
     <div class="col-6 offset-3 justify-content-center">
         {% if is_paginated %}
             {% include 'pagination.html' %}
