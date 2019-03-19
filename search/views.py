@@ -78,7 +78,7 @@ class CreateView(generic.CreateView):
     form_class = PostForm
 
     def get_success_url(self):  # 詳細画面にリダイレクトする。
-        return reverse('search:detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse('search:detail', kwargs={'pk': self.object.pk})
 
     def get_form_kwargs(self, *args, **kwargs):
         form_kwargs = super().get_form_kwargs(*args, **kwargs)
