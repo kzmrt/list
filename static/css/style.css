@@ -326,3 +326,9 @@ footer {
     text-decoration: none;
     background: #999;
 }
+
+/* フォーム入力 */
+#id_title, #id_text {
+    width: 280px;
+    height: 32px;
+}

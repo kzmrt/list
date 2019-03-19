@@ -34,7 +34,7 @@
                 {% for post in object_list %}
                     <tr>
                         <td width="3%"><input type="checkbox" value="{{ post.pk }}" name="checks[]" id="{{ post.pk }}" class="checkbox"></td>
-                        <td width="34%">{{ post.title }}</td>
+                        <td width="34%"><a href="{% url 'search:detail' post.pk %}">{{ post.title }}</a></td>
                         <td width="63%">{{ post.text }}</td>
                     </tr>
                 {% endfor %}

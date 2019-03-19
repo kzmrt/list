@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from .models import CustomUser, Post
 from django import forms
 
 
@@ -27,3 +27,10 @@ class SearchForm(forms.Form):
         label='内容',
         required=False,  # 必須ではない
     )
+
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ('title','text','author',)

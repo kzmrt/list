@@ -2,8 +2,9 @@ import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from .models import Post
-from .forms import SearchForm
+from .forms import SearchForm, PostForm
 from django.db.models import Q
+from django.shortcuts import render, redirect, reverse
 
 logger = logging.getLogger('development')
 
@@ -69,3 +70,23 @@ class IndexView(LoginRequiredMixin, generic.ListView):
         else:
             # 何も返さない
             return Post.objects.none()
+
+
+class CreateView(generic.CreateView):
+    # 登録画面
+    model = Post
+    form_class = PostForm
+
+    def get_success_url(self):  # 詳細画面にリダイレクトする。
+        return reverse('search:detail', kwargs={'pk': self.kwargs['pk']})
+
+    def get_form_kwargs(self, *args, **kwargs):
+        form_kwargs = super().get_form_kwargs(*args, **kwargs)
+        form_kwargs['initial'] = {'author': self.request.user}  # フォームに初期値を設定する。
+        return form_kwargs
+
+
+class DetailView(generic.DetailView):
+    # 詳細画面
+    model = Post
+    template_name = 'search/detail.html'

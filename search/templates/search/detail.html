@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-lg-6 offset-lg-3">
+
+    <h1>Detail</h1>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                <h2 class="info-msg">{{ message }}</h2>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr>
+                <th width="40%">タイトル</th>
+                <td width="60%">{{ post.title }}</td>
+            </tr>
+            <tr>
+                <th width="40%">内容</th>
+                <td width="60%">{{ post.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="ボタングループのツールバー">
+        <div class="btn-group mr-2">
+            <a class="btn btn-primary w-150px" href="{% url 'search:index' %}" role="button">検索画面へ</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

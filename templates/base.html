@@ -52,8 +52,14 @@
 
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'search:index' %}">TOP</a>
+                            <a class="nav-link" href="{% url 'search:index' %}">検索</a>
                         </li>
+                        {% url 'works:create' as create %}
+                        {% ifnotequal request.path create %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'search:create' %}" class="logout">新規登録</a>
+                            </li>
+                        {% endifnotequal %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
                         </li>
