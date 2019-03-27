@@ -1,10 +1,19 @@
 import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-from .models import Post
 from .forms import SearchForm, PostForm
 from django.db.models import Q
 from django.shortcuts import render, redirect, reverse
+from search.models import Post
+from search.serializers import PostSerializer, UserSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from search.models import CustomUser
+from rest_framework import permissions
+from search.permissions import IsOwnerOrReadOnly
+from rest_framework import renderers
+from rest_framework import viewsets
+from rest_framework.decorators import action
 
 logger = logging.getLogger('development')
 
@@ -90,3 +99,40 @@ class DetailView(generic.DetailView):
     # 詳細画面
     model = Post
     template_name = 'search/detail.html'
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+
+    Additionally we also provide an extra `highlight` action.
+    """
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        post = self.get_object()
+        return Response(post.highlighted)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'posts': reverse('post-list', request=request, format=format),
+    })

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'search.apps.SearchConfig',
     "bootstrap4",
+    'rest_framework',  # 追加
 ]
 
 MIDDLEWARE = [
@@ -177,3 +178,8 @@ LOGIN_REDIRECT_URL = '/'
 
 # カスタムユーザモデル
 AUTH_USER_MODEL = 'search.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
