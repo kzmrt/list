@@ -10,8 +10,8 @@ Requirement
 ===========
 
 :Python: 3.7.0
-:Django: 2.2.4
-:django-bootstrap4: 0.0.8
+:Django: 2.2.5
+:django-bootstrap4: 1.0.1
 
 Quick start
 ===========
